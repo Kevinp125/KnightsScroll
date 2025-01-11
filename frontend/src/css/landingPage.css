@@ -72,10 +72,10 @@ h1{
 
 #cloud{
   position: absolute;
-  width: 600px;
-  height: 270px;
-  bottom:200px;
-  right: 300px;
+  width: 700px;
+  height: 300px;
+  bottom:300px;
+  right: 400px;
 }
 
 #pigeon1{
@@ -83,8 +83,8 @@ h1{
   width: 60px;
   height: 60px;
   transform: scaleX(-1) rotate(27deg);
-  left:1150px;
-  bottom:350px;
+  left:1400px;
+  bottom:480px;
 }
 
 #pigeon2{
@@ -92,8 +92,8 @@ h1{
   width: 60px;
   height: 60px;
   transform: scaleX(-1) rotate(-25deg);
-  left: 325px;
-  bottom: 310px;
+  left: 400px;
+  bottom: 450px;
   
 }
 
@@ -102,7 +102,7 @@ h1{
   width: 60px;
   height: 60px;
   transform: scaleX(-1);
-  left:700px;
+  left:800px;
   bottom:170px;
 }
 
