@@ -3,12 +3,43 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title><Small-Project></Small-Project></title>
+	<link rel = "stylesheet" href = "frontend/src/css/landingPage.css"/>
+	<title> Small Project </title>
+
+	<!--Below are all the links related to the google font 'Satisfy' I am using for the header on our landing page-->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Satisfy&display=swap" rel="stylesheet">
 </head>
+
 <body>
-	<h1> Welcome to COP4331 Project!</h1>
-	<button onclick="window.location.href='frontend/public/dashboard.html'">Dashboard</button>
-	<button onclick="window.location.href='frontend/public/login.html'">Login</button>
-	<button onclick="window.location.href='frontend/public/signup.html'">Signup</button>
+
+	<div class = "landingMessage"> <!--landingMessage is a class that makes anything in it behave with flex box properties -->
+		<h1 class = "custom-fancy-font"> Honoring your connections, the noble way.</h1>
+	</div>
+
+	<div class = "toprow"> <!--Everything in top row div is contained within a flex box so the top row consists of the icon thingy on top left and the two buttons on the right side-->
+
+		<div class = "iconContainer"> <!--Everything wrapped in this icon container is in a flex col so that the text image and other text stacks on each other-->
+			<p style="margin: 0px">Knight's Scroll</p>
+			<img id = "scroll" src = "frontend/public/images/scroll.png" alt = "scroll">
+			<p style = "margin:0px">Est. 2024</p>
+		</div>
+
+		<div class = "buttonDiv"> <!--Everything in this button div is well just the buttons we have for right now-->
+			<button class = "buttonContainer" onclick="window.location.href='frontend/src/dashboard.html'">Dashboard</button>
+			<button class = "buttonContainer" onclick="window.location.href='frontend/src/login.html'">Login</button>
+			<button class = "buttonContainer" onclick="window.location.href='frontend/src/signup.html'">Signup</button>
+		</div>
+
+	</div>
+
+	<!--Below is just a bunch of image tags that are the images we see on our landing page-->
+	<img id = "castleImage" src = "frontend/public/images/castle.png" alt ="castle">
+	<img id = "cloud" src = "frontend/public/images/cloud.png" alt = "cloud">	
+	<img id = "pigeon1" src = "frontend/public/images/pigeon.png" alt = "pigeon">
+	<img id = "pigeon2" src = "frontend/public/images/pigeon.png" alt = "pigeon">
+	<img id = "pigeon3" src = "frontend/public/images/pigeon.png" alt = "pigeon">
+	
 </body>
 </html>

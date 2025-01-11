@@ -1,0 +1,112 @@
+body {
+  background-color: dimgrey;
+  overflow: hidden;
+}
+
+.landingMessage{
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+  height: 60vh
+}
+
+.toprow{
+  position:absolute;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  left: 0;
+  right: 0;
+  right: 75px;
+  left: 30px;
+  top: 75px;
+}
+
+.iconContainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  height:120px;
+  width: 120px;
+  border-radius: 10px;
+  border-style: solid;
+  border-width: 2px;
+  border-color: black;
+  background-color: gold;
+
+}
+
+.buttonDiv{
+  display: flex;
+  gap: 15px;
+}
+
+.buttonContainer{
+  width: 100px;
+  height: 30px;
+  border-radius: 8px;
+  border-width: 2.5px;
+  cursor: pointer;
+  background-color: gold;
+}
+
+.custom-fancy-font{
+  font-family: 'Satisfy', cursive;
+}
+
+h1{
+  font-size: 3.5rem;
+  word-wrap: break-word;
+  max-width: 40%;
+}
+
+#castleImage{
+  position: absolute;
+  bottom: 1px;
+  left: -1px;
+  height: 60%;
+  width: 40%;
+}
+
+#cloud{
+  position: absolute;
+  width: 600px;
+  height: 270px;
+  bottom:200px;
+  right: 300px;
+}
+
+#pigeon1{
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  transform: scaleX(-1) rotate(27deg);
+  left:1150px;
+  bottom:350px;
+}
+
+#pigeon2{
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  transform: scaleX(-1) rotate(-25deg);
+  left: 325px;
+  bottom: 310px;
+  
+}
+
+#pigeon3{
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  transform: scaleX(-1);
+  left:700px;
+  bottom:170px;
+}
+
+#scroll{
+  height:60px;
+  width: 65px;
+}
