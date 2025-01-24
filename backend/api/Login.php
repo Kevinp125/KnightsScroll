@@ -7,6 +7,7 @@
 	$firstName = "";
 	$lastName = "";
 
+	// database user is root2, password is password1234
 	$conn = new mysqli("localhost", "root2", "password1234", "COP4331"); 	
 	if( $conn->connect_error )
 	{
@@ -15,7 +16,7 @@
 	else
 	{
 		$stmt = $conn->prepare("SELECT ID,firstName,lastName FROM Users WHERE Login=? AND Password =?");
-		$stmt->bind_param("ss", $inData["login"], $inData["password"]);
+		$stmt->bind_param("ss", $inData["userName"], $inData["password"]);
 		$stmt->execute();
 		$result = $stmt->get_result();
 
