@@ -3,10 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Contact Manager</title>
+    <title>Knight's Scroll</title>
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
+
+    <!--This button is the same little square we see in landing page that says Knight's Scroll and is just a way for the user to be redirected to landing page if they wish--> <!--This button is the same little square we see in landing page that says Knight's Scroll and is just a way for the user to be redirected to landing page if they wish-->
+    <button class = "iconContainer" onclick = "window.location.href = '/index.html' "> 
+      <p style="color: #FFCD03; margin: 0px">Knight's Scroll</p>
+      <img id = "scroll" src = "../public/images/scroll.png" alt = "scroll">
+      <p style = "color: #FFCD03; margin:0px">Est. 2025</p>
+    </button>
+
     <div class="signup-container">
       <h1>Create an Account</h1>
       <div id="error-message"></div>
@@ -21,7 +29,7 @@
           placeholder="Confirm Password"
           required
         />
-        <button type="submit">Sign Up</button>
+        <button id = "submitButton" type="submit">Sign Up</button> <!--Changed button to id submitButton so styles didnt interfere with other button above that brinngs us back to home page-->
       </form>
       <p>Already have an account? <a href="login.html">Login here</a></p>
     </div>
