@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
       e.preventDefault();  // Prevent the default form submission (page reload)
 
       const data = {
-        email: document.getElementById("email").value,
+        email: document.getElementById("user").value, //change the id for this to user since the input isnt email just fixing it
         password: document.getElementById("password").value,
       };
 
@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const data = { // Data we are sending to backend to DB
         firstName: document.getElementById("firstName").value,
         lastName: document.getElementById("lastName").value,
-        email: document.getElementById("email").value,
+        email: document.getElementById("user").value,
         password: password,
       };
 
