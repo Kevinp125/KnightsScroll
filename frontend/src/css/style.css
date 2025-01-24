@@ -38,7 +38,7 @@ body {
    }
    
    button {
-    background: #ffd700;
+    background: #FFCD03;
     color: white;
     padding: 0.75rem;
     border: none;
@@ -49,7 +49,7 @@ body {
    }
    
    button:hover {
-    background: #ffed4a;
+    background: rgb(249, 232, 79);
    }
    
    #error-message {
