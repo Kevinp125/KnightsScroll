@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
       e.preventDefault();  // Prevent the default form submission (page reload)
 
       const data = {
-        email: document.getElementById("user").value, //change the id for this to user since the input isnt email just fixing it
+        userName: document.getElementById("user").value, //change the id for this to user since the input isnt email just fixing it
         password: document.getElementById("password").value,
       };
 
@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
             id: userData.id,
             firstName: userData.firstName,
             lastName: userData.lastName,
-            email: data.email
+            userName: data.userName
           }));
           
           window.location.href = "/frontend/public/dashboard.html";
@@ -60,12 +60,12 @@ document.addEventListener("DOMContentLoaded", () => {
       const data = { // Data we are sending to backend to DB
         firstName: document.getElementById("firstName").value,
         lastName: document.getElementById("lastName").value,
-        email: document.getElementById("user").value,
+        userName: document.getElementById("user").value,
         password: password,
       };
 
       try {
-        const res = await fetch("/backend/api/Signup.php", {
+        const res = await fetch("/backend/api/SignUp.php", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
             id: userData.id,
             firstName: data.firstName,
             lastName: data.lastName,
-            email: data.email
+            userName: data.userName
           }));
           
           window.location.href = "/frontend/public/dashboard.html"; // Redirect user to dashboard page
