@@ -24,14 +24,14 @@
         $checkStmt = $conn->prepare("SELECT ID FROM Users WHERE ID = ?");
         if (!$checkStmt) 
         {
-            returnWithError($stmt->error);
+            returnWithError($checkStmt->error);
         }      
 
         // bind userId parameter
         $checkStmt->bind_param("s", $userId);
         if (!$checkStmt->execute()) 
         {
-            returnWithError($stmt->error);
+            returnWithError($checkStmt->error);
         }
 
         $checkStmt->store_result();
@@ -56,7 +56,7 @@
         {
             // returns contact id and empty error code for success
             $contactId = $stmt->insert_id;
-            returnWithInfo();
+            returnWithInfo($contactId);
         }
         else
         {
