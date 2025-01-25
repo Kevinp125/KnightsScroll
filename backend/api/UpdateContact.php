@@ -43,7 +43,7 @@
             // id does not exist in Users table
             $checkStmt->close();
             $conn->close();
-            returnWithError("User ID does not exist.");
+            returnWithError("User ID does not exist. User ID is: " + $userId);
         }
         $checkStmt->close();
         
