@@ -48,7 +48,7 @@
         $checkStmt->close();
         
         // insert into contact databse entries, as labeled below
-        $stmt = $conn->prepare("UPDATE Contacts SET UserId = ?, FirstName = ?, LastName = ?, Phone = ?, Email = ? WHERE ID = ?");
+        $stmt = $conn->prepare("UPDATE Contacts SET UserID = ?, FirstName = ?, LastName = ?, Phone = ?, Email = ? WHERE ID = ?");
         
         // bind my vars to database vars in this order
         $stmt->bind_param("ssssss", $userId, $firstName, $lastName, $pNumber, $email, $contactId);
