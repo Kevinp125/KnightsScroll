@@ -28,7 +28,7 @@
         }      
 
         // bind userId parameter
-        $checkStmt->bind_param("s", $userId);
+        $checkStmt->bind_param("i", $userId);
         if (!$checkStmt->execute()) 
         {
             returnWithError($checkStmt->error);
@@ -50,7 +50,7 @@
         $stmt = $conn->prepare("INSERT INTO Contacts (UserId, FirstName, LastName, Phone, Email) VALUES (?, ?, ?, ?, ?)");
         
         // bind my vars to database vars in this order
-        $stmt->bind_param("sssss", $userId, $firstName, $lastName, $pNumber, $email);
+        $stmt->bind_param("issss", $userId, $firstName, $lastName, $pNumber, $email);
         
         if($stmt->execute())
         {
