@@ -54,8 +54,9 @@
         
         if($stmt->execute())
         {
-            // empty error = success
-            returnWithError("");
+            // returns contact id and empty error code for success
+            $contactId = $stmt->insert_id;
+            returnWithInfo();
         }
         else
         {
@@ -83,5 +84,11 @@
     {
         $retValue = '{"error":"' . $err . '"}';
         sendResultInfoAsJson($retValue);
+    }
+
+    function returnWithInfo($contactId)
+    {
+        $retValue = '{"contactId":' . $contactId . ',"error":""}';
+        sendResultInfoAsJson( $retValue );
     }
 ?>
