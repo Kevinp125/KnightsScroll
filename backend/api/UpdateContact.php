@@ -18,16 +18,16 @@
     } 
     else
     {
-        // first check for if the user exists
+        // first check for if the contact exists
 
-        // to do this, we grab ID from users table
+        // to do this, we grab ID from contacts table
         $checkStmt = $conn->prepare("SELECT ID FROM Contacts WHERE ID = ?");
         if (!$checkStmt) 
         {
             returnWithError($stmt->error);
         }      
 
-        // bind userId parameter
+        // bind contactId parameter
         $checkStmt->bind_param("s", $contactId);
         if (!$checkStmt->execute()) 
         {
@@ -39,7 +39,7 @@
         // see if it returned nothing
         if ($checkStmt->num_rows === 0) 
         {
-            // id does not exist in Users table
+            // id does not exist in Contacts table
             $checkStmt->close();
             $conn->close();
             returnWithError("Contact ID does not exist. Contact ID is: " . $contactId);
@@ -47,10 +47,10 @@
         $checkStmt->close();
         
         // insert into contact databse entries, as labeled below
-        $stmt = $conn->prepare("UPDATE Contacts SET UserID = ?, FirstName = ?, LastName = ?, Phone = ?, Email = ? WHERE ID = ?");
+        $stmt = $conn->prepare("UPDATE Contacts SET FirstName = ?, LastName = ?, Phone = ?, Email = ? WHERE ID = ?");
         
         // bind my vars to database vars in this order
-        $stmt->bind_param("ssssss", $userId, $firstName, $lastName, $pNumber, $email, $contactId);
+        $stmt->bind_param("ssssss", $firstName, $lastName, $pNumber, $email, $contactId);
         
         if($stmt->execute())
         {
