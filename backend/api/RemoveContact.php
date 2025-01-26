@@ -2,12 +2,8 @@
     // incoming json payload
     $inData = getRequestInfo();
     
-    // split payload into vars
-    $firstName = $inData["firstName"];
-    $lastName = $inData["lastName"];
-    $pNumber = $inData["pNumber"];
-    $email = $inData["email"];
-    $userId = $inData["userId"]; // a user id
+    // grab contact ID from payload
+    $contactId = $inData["contactId"];
 
     // database user is root2, password is password1234
     $conn = new mysqli("localhost", "root2", "password1234", "COP4331");
@@ -18,17 +14,17 @@
     } 
     else
     {
-        // first check for if the user exists
+        // first check for if the contact exists
 
-        // to do this, we grab ID from users table
-        $checkStmt = $conn->prepare("SELECT ID FROM Users WHERE ID = ?");
+        // to do this, we grab ID from contact table
+        $checkStmt = $conn->prepare("SELECT ID FROM Contacts WHERE ID = ?");
         if (!$checkStmt) 
         {
             returnWithError($checkStmt->error);
         }      
 
-        // bind userId parameter
-        $checkStmt->bind_param("i", $userId);
+        // bind contactId parameter
+        $checkStmt->bind_param("i", $contactId);
         if (!$checkStmt->execute()) 
         {
             returnWithError($checkStmt->error);
@@ -39,24 +35,23 @@
         // see if it returned nothing
         if ($checkStmt->num_rows === 0) 
         {
-            // id does not exist in Users table
+            // id does not exist in Contact table
             $checkStmt->close();
             $conn->close();
-            returnWithError("User ID does not exist.");
+            returnWithError("Contact ID does not exist.");
         }
         $checkStmt->close();      	    
         
-        // insert into contact databse entries, as labeled below
-        $stmt = $conn->prepare("INSERT INTO Contacts (UserId, FirstName, LastName, Phone, Email) VALUES (?, ?, ?, ?, ?)");
+        // delete contact ID
+        $stmt = $conn->prepare("DELETE FROM Contacts WHERE ID = ?");
         
-        // bind my vars to database vars in this order
-        $stmt->bind_param("issss", $userId, $firstName, $lastName, $pNumber, $email);
+        // bind contact ID into delete statement
+        $stmt->bind_param("i", $contactId);
         
         if($stmt->execute())
         {
-            // returns contact id and empty error code for success
-            $contactId = $stmt->insert_id;
-            returnWithInfo($contactId);
+            // empty error means success
+            returnWithError("");
         }
         else
         {
@@ -86,9 +81,4 @@
         sendResultInfoAsJson($retValue);
     }
 
-    function returnWithInfo($contactId)
-    {
-        $retValue = '{"contactId":' . $contactId . ',"error":""}';
-        sendResultInfoAsJson( $retValue );
-    }
 ?>
