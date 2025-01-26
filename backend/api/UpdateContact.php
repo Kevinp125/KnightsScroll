@@ -3,12 +3,11 @@
     $inData = getRequestInfo();
     
     // split payload into vars
-    $contactId = $inData["id"];
+    $contactId = $inData["contactId"];
     $firstName = $inData["firstName"];
     $lastName = $inData["lastName"];
     $pNumber = $inData["pNumber"];
     $email = $inData["email"];
-    $userId = $inData["userId"]; // a user id
 
     // database user is root2, password is password1234
     $conn = new mysqli("localhost", "root2", "password1234", "COP4331");
@@ -22,14 +21,14 @@
         // first check for if the user exists
 
         // to do this, we grab ID from users table
-        $checkStmt = $conn->prepare("SELECT ID FROM Users WHERE ID = ?");
+        $checkStmt = $conn->prepare("SELECT ID FROM Contacts WHERE ID = ?");
         if (!$checkStmt) 
         {
             returnWithError($stmt->error);
         }      
 
         // bind userId parameter
-        $checkStmt->bind_param("s", $userId);
+        $checkStmt->bind_param("s", $contactId);
         if (!$checkStmt->execute()) 
         {
             returnWithError($stmt->error);
@@ -43,7 +42,7 @@
             // id does not exist in Users table
             $checkStmt->close();
             $conn->close();
-            returnWithError("User ID does not exist. User ID is: " . $userId);
+            returnWithError("Contact ID does not exist. Contact ID is: " . $contactId);
         }
         $checkStmt->close();
         
