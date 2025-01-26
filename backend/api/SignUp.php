@@ -79,13 +79,13 @@ function sendResultInfoAsJson($obj)
 // ID set to 0, empty first+last name, custom error message
 function returnWithError($err)
 {
-    $retValue = '{"id":0,"firstName":"","lastName":"","userName":"","error":"' . $err . '"}';
+    $retValue = '{"userId":0,"firstName":"","lastName":"","userName":"","error":"' . $err . '"}';
     sendResultInfoAsJson($retValue);
 }
 
 // user ID, first name, last name, empty error message (to show success)
 function returnWithInfo($firstName, $lastName, $userName, $id)
 {
-    $retValue = '{"id":' . $id . ',"firstName":"' . $firstName . '","lastName":"' . $lastName . '","userName":"' . $userName . '","error":""}';
+    $retValue = '{"userId":' . $id . ',"firstName":"' . $firstName . '","lastName":"' . $lastName . '","userName":"' . $userName . '","error":""}';
     sendResultInfoAsJson($retValue);
 }
