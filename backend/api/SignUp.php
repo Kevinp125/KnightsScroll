@@ -1,6 +1,11 @@
 <?php
 $inData = getRequestInfo();
 
+// Check for empty fields
+if (!isset($inData["firstName"]) || !isset($inData["lastName"]) || !isset($inData["userName"]) || !isset($inData["password"])) {
+    returnWithError("All fields are required");
+    exit();
+
 // gather data from the incoming json payload
 $firstName = trim($inData["firstName"]);
 $lastName = trim($inData["lastName"]);

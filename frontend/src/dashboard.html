@@ -13,16 +13,14 @@
   <body>
     <!-- Navigation Bar -->
     <nav class="navbar">
-      <!-- Left side - Logo -->
       <div class="nav-brand">
         <img id="scroll" src="../public/images/scroll.png" alt="scroll" />
         <span class="brand-text">Knight's Scroll</span>
       </div>
 
-      <!-- Center - Search -->
       <div class="search-bar">
-        <input type="text" placeholder="Search contacts..." />
-        <button class="nav-btn">
+        <input type="text" placeholder="Search contacts..." id="searchInput" />
+        <button class="search-btn">
           <img
             src="../public/images/search-icon.png"
             alt="Search"
@@ -31,59 +29,80 @@
         </button>
       </div>
 
-      <!-- Right side - User actions -->
       <div class="nav-actions">
-        <button class="nav-btn">
+        <button class="nav-btn" title="Profile">
           <img
             src="../public/images/user-icon.png"
             alt="Profile"
             class="nav-icon"
           />
         </button>
-        <button class="nav-btn">
+        <button class="nav-btn" title="Settings">
           <img
             src="../public/images/setting-icon.png"
             alt="Settings"
             class="nav-icon"
           />
         </button>
-        <button onclick="window.location.href='index.html'" class="nav-btn">
+        <button
+          class="nav-btn logout-btn"
+          title="Logout"
+          onclick="window.location.href='../../index.html'"
+        >
           <img
             src="../public/images/log-out.png"
-            alt="logout"
+            alt="Logout"
             class="nav-icon"
           />
         </button>
       </div>
     </nav>
 
-    <!-- Main Content -->
     <div class="container">
-      <!-- Welcome Section -->
       <header class="welcome">
         <h1>Welcome back, <span id="userName">Noble User</span></h1>
       </header>
 
-      <!-- Contact Actions -->
       <div class="contact-actions">
-        <button class="add-btn">+ Add New Contact</button>
+        <button class="add-btn">
+          <img src="../public/images/add-user.png" alt="Add" class="add-icon" />
+          Add New Contact
+        </button>
       </div>
 
-      <!-- Contacts Grid -->
-      <div class="contacts-grid">
-        <!-- Sample Contact Card -->
-        <div class="contact-card">
-          <div class="contact-info">
-            <h3>John Doe</h3>
-            <p>📧 john@example.com</p>
-            <p>📱 123-456-7890</p>
+      <div class="contacts-grid" id="contactsGrid">
+        <!-- Contact cards will be dynamically inserted here -->
+      </div>
+
+      <!-- Add Contact Modal -->
+      <div id="addContactModal" class="modal">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2>Add New Contact</h2>
+            <span class="close">&times;</span>
           </div>
-          <div class="card-actions">
-            <button class="edit-btn">Edit</button>
-            <button class="delete-btn">Delete</button>
-          </div>
+          <form id="addContactForm">
+            <div class="form-group">
+              <label for="contactName">Name</label>
+              <input type="text" id="contactName" required />
+            </div>
+            <div class="form-group">
+              <label for="contactEmail">Email</label>
+              <input type="email" id="contactEmail" required />
+            </div>
+            <div class="form-group">
+              <label for="contactPhone">Phone Number</label>
+              <input type="tel" id="contactPhone" required />
+            </div>
+            <div class="modal-buttons">
+              <button type="button" class="cancel-btn">Cancel</button>
+              <button type="submit" class="submit-btn">Add Contact</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
+
+    <script src="js/dashboard.js"></script>
   </body>
 </html>

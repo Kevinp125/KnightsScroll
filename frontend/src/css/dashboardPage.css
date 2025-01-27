@@ -1,180 +1,362 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-  min-height: 100vh;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../../public/images/background.jpg');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  font-family: Arial, sans-serif;
+    min-height: 100vh;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../../public/images/background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    font-family: Arial, sans-serif;
+    color: #2d190f;
 }
 
 /* Navbar Styles */
 .navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 2rem;
-  background-color: #2d190f;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #2d190f;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
 .nav-brand {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
 }
 
 #scroll {
-  height: 40px;
-  width: 40px;
+    height: 40px;
+    width: 40px;
+    transition: transform 0.3s ease;
+}
+
+#scroll:hover {
+    transform: scale(1.1);
 }
 
 .brand-text {
-  color: #FFCD03;
-  font-family: 'MedievalSharp', cursive;
-  font-size: 1.5rem;
+    color: #FFCD03;
+    font-family: 'MedievalSharp', cursive;
+    font-size: 1.5rem;
 }
 
 .search-bar {
-  display: flex;
-  gap: 0.5rem;
-  max-width: 400px;
-  width: 100%;
+    display: flex;
+    gap: 0.5rem;
+    max-width: 400px;
+    width: 100%;
 }
 
 .search-bar input {
-  flex: 1;
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 4px;
-  background-color: rgba(255, 255, 255, 0.9);
+    flex: 1;
+    padding: 0.75rem 1rem;
+    border: none;
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.9);
+    font-size: 1rem;
+    transition: box-shadow 0.3s ease;
 }
 
-.search-bar button {
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 4px;
-  background-color: #8B4513;
-  color: white;
-  cursor: pointer;
+.search-bar input:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #FFCD03;
+}
+
+.search-btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    background-color: #8B4513;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.search-btn:hover {
+    background-color: #A0522D;
 }
 
 .nav-actions {
-  display: flex;
-  gap: 1rem;
+    display: flex;
+    gap: 1rem;
 }
 
 .nav-icon {
-  width: 26px;  
-  height: 26px;
-  vertical-align: middle;
+    width: 24px;
+    height: 24px;
+    transition: transform 0.3s ease;
 }
 
 .nav-btn {
-  padding: 0.5rem;  
-  border: none;
-  border-radius: 4px;
-  background-color: transparent;
-  color: #FFCD03;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 4px;
+    background-color: transparent;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+}
+
+.nav-btn:hover .nav-icon {
+    transform: scale(1.1);
 }
 
 .nav-btn:hover {
-  background-color: rgba(139, 69, 19, 0.3);  
+    background-color: rgba(139, 69, 19, 0.3);
 }
 
+.logout-btn {
+    background-color: #8B4513;
+}
 
+.logout-btn:hover {
+    background-color: #A0522D;
+}
 
 /* Main Content Styles */
 .container {
-  max-width: 1200px;
-  margin: 2rem auto;
-  padding: 0 2rem;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 2rem;
 }
 
 .welcome {
-  background-image: url('../../public/images/scroll-background.jpg');
-  background-size: cover;
-  padding: 2rem;
-  border-radius: 8px;
-  margin-bottom: 2rem;
-  text-align: center;
+    background-image: url('../../public/images/scroll-background.jpg');
+    background-size: cover;
+    padding: 2rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .welcome h1 {
-  color: #2d190f;
-  font-family: 'MedievalSharp', cursive;
+    color: #2d190f;
+    font-family: 'MedievalSharp', cursive;
+    font-size: 2rem;
 }
 
 .contact-actions {
-  margin-bottom: 2rem;
-  text-align: right;
+    margin-bottom: 2rem;
+    text-align: right;
 }
 
 .add-btn {
-  padding: 0.75rem 1.5rem;
-  background-color: #8B4513;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background-color: #8B4513;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.add-btn:hover {
+    background-color: #A0522D;
+    transform: translateY(-2px);
+}
+
+.add-icon {
+    width: 20px;
+    height: 20px;
 }
 
 .contacts-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
 }
 
 .contact-card {
-  background-color: rgba(255, 255, 255, 0.95);
-  padding: 1.5rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.contact-info {
-  margin-bottom: 1rem;
+.contact-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .contact-info h3 {
-  color: #2d190f;
-  margin-bottom: 0.5rem;
+    color: #2d190f;
+    margin-bottom: 1rem;
+    font-family: 'MedievalSharp', cursive;
 }
 
 .contact-info p {
-  color: #666;
-  margin: 0.25rem 0;
+    color: #666;
+    margin: 0.5rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .card-actions {
-  display: flex;
-  gap: 0.5rem;
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
 }
 
 .edit-btn, .delete-btn {
-  flex: 1;
-  padding: 0.5rem;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+    flex: 1;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
 }
 
 .edit-btn {
-  background-color: #8B4513;
-  color: white;
+    background-color: #8B4513;
+    color: white;
 }
 
 .delete-btn {
-  background-color: #8B0000;
-  color: white;
+    background-color: #8B0000;
+    color: white;
+}
+
+.edit-btn:hover, .delete-btn:hover {
+    transform: translateY(-2px);
+}
+
+.edit-btn:hover {
+    background-color: #A0522D;
+}
+
+.delete-btn:hover {
+    background-color: #A00000;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    backdrop-filter: blur(4px);
+}
+
+.modal-content {
+    position: relative;
+    background-image: url('../../public/images/scroll-background.jpg');
+    background-size: cover;
+    margin: 10% auto;
+    padding: 2rem;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    transform: translateY(0);
+    transition: transform 0.3s ease;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.modal-header h2 {
+    color: #2d190f;
+    font-family: 'MedievalSharp', cursive;
+}
+
+.close {
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #2d190f;
+    transition: transform 0.3s ease;
+}
+
+.close:hover {
+    transform: scale(1.1);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #2d190f;
+    font-weight: bold;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid #8B4513;
+    border-radius: 4px;
+    font-size: 1rem;
+    background-color: rgba(255, 255, 255, 0.9);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #FFCD03;
+    box-shadow: 0 0 0 2px rgba(255, 205, 3, 0.2);
+}
+
+.modal-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.submit-btn, .cancel-btn {
+    flex: 1;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.submit-btn {
+    background-color: #8B4513;
+    color: white;
+}
+
+.cancel-btn {
+    background-color: #666;
+    color: white;
+}
+
+.submit-btn:hover, .cancel-btn:hover {
+    transform: translateY(-2px);
+}
+
+.submit-btn:hover {
+    background-color: #A0522D;
+}
+
+.cancel-btn:hover {
+    background-color: #777;
 }
