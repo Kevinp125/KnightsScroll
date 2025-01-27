@@ -1,19 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap');
+
 body {
     margin: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../../public/images/background.jpg');    
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/frontend/public/images/background.jpg');    
     background-position: center;
     background-size: cover;
     background-attachment: fixed;
-    @import url('https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap');
     font-family: 'MedievalSharp', cursive;
    }
    
    .login-container, .signup-container {
-    background-image: url('../../public/images/scroll-background.jpg');    
+    background-image: url('/frontend/public/images/scroll-background.jpg');    
     background-size: cover;
     padding: 2rem;
     border-radius: 8px;

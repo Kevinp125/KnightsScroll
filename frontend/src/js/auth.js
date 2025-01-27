@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
               userName: data.userName,
             })
           );
-          window.location.href = "/frontend/public/dashboard.html";
+          window.location.href = "/frontend/src/dashboard.html";
         } else {
           errorMessages.textContent =
             res.status + " - " + res.statusText ||
@@ -69,7 +69,6 @@ document.addEventListener("DOMContentLoaded", () => {
       };
 
       console.log("Sending data..");
-
       try {
         const res = await fetch("../../backend/api/SignUp.php", {
           method: "POST",
@@ -78,24 +77,23 @@ document.addEventListener("DOMContentLoaded", () => {
           },
           body: JSON.stringify(data),
         });
+        console.log("Res: ", res)
 
-        const userData = await res.json();
 
-        console.log("userData: ", userData);
 
         if (res.ok) {
           // Save user data to localStorage after successful signup
-          localStorage.setItem(
-            "user",
-            JSON.stringify({
-              id: userData.id,
-              firstName: data.firstName,
-              lastName: data.lastName,
-              userName: data.userName,
-            })
-          );
+          // localStorage.setItem(
+          //   "user",
+          //   JSON.stringify({
+          //     id: userData.id,
+          //     firstName: data.firstName,
+          //     lastName: data.lastName,
+          //     userName: data.userName,
+          //   })
+          // );
 
-          window.location.href = "/frontend/public/dashboard.html"; // Redirect user to dashboard page
+          window.location.href = "/frontend/src/dashboard.html"; // Redirect user to dashboard page
         }
       } catch (err) {
         console.error("Error within SignUp: ", err);

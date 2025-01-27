@@ -6,7 +6,7 @@
 
 body {
     min-height: 100vh;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../../public/images/background.jpg');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/frontend/public/images/background.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -131,7 +131,7 @@ body {
 }
 
 .welcome {
-    background-image: url('../../public/images/scroll-background.jpg');
+    background-image: url('/frontend/public/images/scroll-background.jpg');
     background-size: cover;
     padding: 2rem;
     border-radius: 8px;
@@ -261,7 +261,7 @@ body {
 
 .modal-content {
     position: relative;
-    background-image: url('../../public/images/scroll-background.jpg');
+    background-image: url('/frontend/public/images/scroll-background.jpg');
     background-size: cover;
     margin: 10% auto;
     padding: 2rem;

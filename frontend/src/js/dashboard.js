@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (user) {
     document.getElementById("userName").textContent = user.firstName;
   } else {
-    window.location.href = "login.html"; // Redirect if not logged in
+    // window.location.href = "login.html"; // Redirect if not logged in
     console.log("User not logged in");
   }
 
