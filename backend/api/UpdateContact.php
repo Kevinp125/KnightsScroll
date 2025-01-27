@@ -50,7 +50,7 @@
         $stmt = $conn->prepare("UPDATE Contacts SET FirstName = ?, LastName = ?, Phone = ?, Email = ? WHERE ID = ?");
         
         // bind my vars to database vars in this order
-        $stmt->bind_param("ssssss", $firstName, $lastName, $pNumber, $email, $contactId);
+        $stmt->bind_param("sssss", $firstName, $lastName, $pNumber, $email, $contactId);
         
         if($stmt->execute())
         {
