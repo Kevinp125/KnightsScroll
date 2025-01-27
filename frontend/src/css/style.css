@@ -4,12 +4,17 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: dimgrey;
-    font-family: Arial, sans-serif;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../../public/images/background.jpg');    
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    @import url('https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap');
+    font-family: 'MedievalSharp', cursive;
    }
    
    .login-container, .signup-container {
-    background: whitesmoke;
+    background-image: url('../../public/images/scroll-background.jpg');    
+    background-size: cover;
     padding: 2rem;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
@@ -38,8 +43,8 @@ body {
    }
    
    #submitButton { /*Instead of these styles applying to all buttons made it a tag so it only applies to submit button */
-    background: #FFCD03;
-    color: white;
+    background: #8B4513;
+    color: #FFE5B4;
     padding: 0.75rem;
     border: none;
     border-radius: 12px;
@@ -49,7 +54,7 @@ body {
    }
    
    #submitButton:hover { /* Same here */
-    background: rgb(249, 232, 79);
+    background: #A0522D;
    }
    
    #error-message {
@@ -64,11 +69,13 @@ body {
    }
    
    a {
-    color: #2563eb;
+    color: #eb0303;
     text-decoration: none;
     font-weight: bold;
     font-style: italic;
    }
+
+   
    /*All class styles below are newly added by Kevin because I needed to add the same little home page button to this page to get out of login screen*/
    .iconContainer{
 
