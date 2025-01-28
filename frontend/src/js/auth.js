@@ -1,7 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
+  console.log("Script is loaded!");
   const loginForm = document.getElementById("login-form");
   const signupForm = document.getElementById("signup-form");
-  const errorMessages = document.getElementById("error-messages");
+  const errorMessages = document.getElementById("error-message"); //changed this to error-message was error-messages before and in login html code the id is error-messages id didnt match.
 
   if (loginForm) {
     loginForm.addEventListener("submit", async (e) => {
@@ -24,8 +25,11 @@ document.addEventListener("DOMContentLoaded", () => {
         const userData = await res.json(); // Parse the response
         console.log("userData: ", userData);
 
-        if (res.ok) {
-          // Save user data to localStorage
+        if (userData.id !== 0) { //this before was checking if res.ok redirect user to dashboard and save info to localStorage. However
+                                //this was wrong because res.ok is checking if the response is 200 or not which would always be true if the response is successful
+                                //the real check is if to see if backend returned a userData.id of 0 if does the user doesnt exit. That is why we check here if it ISNT zero we redirect user
+                                //otherwise print the error message 
+                                // Save user data to localStorage
           localStorage.setItem(
             "user",
             JSON.stringify({
@@ -40,6 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
           errorMessages.textContent =
             res.status + " - " + res.statusText ||
             "An error occurred with the server";
+            console.log("error logging in");
         }
       } catch (err) {
         errorMessages.textContent =
