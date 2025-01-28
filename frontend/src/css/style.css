@@ -70,8 +70,8 @@ body {
    }
    
    a {
-    color: #eb0303;
-    text-decoration: none;
+    color: blue;
+    text-decoration: underline;
     font-weight: bold;
     font-style: italic;
    }
