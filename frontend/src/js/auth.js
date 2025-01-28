@@ -23,9 +23,8 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         const userData = await res.json(); // Parse the response
-        console.log("userData: ", userData);
 
-        if (userData.id !== 0) { //this before was checking if res.ok redirect user to dashboard and save info to localStorage. However
+        if (userData.userId !== 0) { //this before was checking if res.ok redirect user to dashboard and save info to localStorage. However
                                 //this was wrong because res.ok is checking if the response is 200 or not which would always be true if the response is successful
                                 //the real check is if to see if backend returned a userData.id of 0 if does the user doesnt exit. That is why we check here if it ISNT zero we redirect user
                                 //otherwise print the error message 
