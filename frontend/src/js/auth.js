@@ -92,11 +92,11 @@ document.addEventListener("DOMContentLoaded", () => {
             })
           );
           
-          errorMessages.textContent = "Account created successfully!";
+          errorMessages.textContent = "Account created successfully";
           // window.location.href = "/frontend/src/dashboard.html"; // We had this here before to redirect user to dashboard as soon as they click sign up but I am going to have them log in instead
         }
         else {
-          errorMessages.textContent = userData.message; //else means the user already exists so we print the message backend sends back which says username already exists
+          errorMessages.textContent = userData.error; //else means the user already exists so we print the message backend sends back which says username already exists
         }
       } catch (err) {
         console.error("Error within SignUp: ", err);
