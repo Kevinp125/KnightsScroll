@@ -91,8 +91,9 @@ document.addEventListener("DOMContentLoaded", () => {
               userName: data.userName,
             })
           );
-
-          window.location.href = "/frontend/src/dashboard.html"; // Redirect user to dashboard page
+          
+          errorMessages.textContent = "Account created successfully!";
+          // window.location.href = "/frontend/src/dashboard.html"; // We had this here before to redirect user to dashboard as soon as they click sign up but I am going to have them log in instead
         }
       } catch (err) {
         console.error("Error within SignUp: ", err);
