@@ -32,7 +32,7 @@
           minlength="5" maxlength="18"
           pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{5,32}$"
           title= "Must be 5-32 characters and include at least one letter, one number, and one special character (!@#$%^&*)."/> <!--Changed this type to text because user doesnt need email to sign in and id to user for readability-->
-          <button style="position: absolute; border: none; background: none; padding: 0; cursor: pointer;"> <!--Making a button that wont show so i can put the image inside of it. That will act as the button-->
+          <button type="button" style="position: absolute; border: none; background: none; padding: 0; cursor: pointer;"> <!--Making a button that wont show so i can put the image inside of it. That will act as the button-->
             <img src="../public/images/show.png" alt="toggle visibility" id="togglePasswordButton" style="width: 20px; height: 20px; position: absolute; right: 14px; top: 12px;"/> <!--This is the image that will toggle the visibility of the password-->
           </button>
         </div>
@@ -44,7 +44,7 @@
             placeholder="Confirm Password"
             required
           />
-          <button style="position: absolute; border: none; background: none; padding: 0; cursor: pointer;">
+          <button type="button" style="position: absolute; border: none; background: none; padding: 0; cursor: pointer;">
             <img src="../public/images/show.png" alt="toggle visibility" id="toggleConfirmPasswordButton" style="width: 20px; height: 20px; position: absolute; right: 14px; top: 12px;"/>
           </button>
         </div>
