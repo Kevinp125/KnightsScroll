@@ -10,9 +10,9 @@
 
     <!--This button is the same little square we see in landing page that says Knight's Scroll and is just a way for the user to be redirected to landing page if they wish--> <!--This button is the same little square we see in landing page that says Knight's Scroll and is just a way for the user to be redirected to landing page if they wish-->
     <button class = "iconContainer" onclick = "window.location.href = '/index.html' "> 
-      <p style="color: #FFCD03; margin: 0px">Knight's Scroll</p>
+      <p style="color: #FFCD03; margin: 0px; font-size: 1rem">Knight's Scroll</p>
       <img id = "scroll" src = "../public/images/scroll.png" alt = "scroll">
-      <p style = "color: #FFCD03; margin:0px">Est. 2025</p>
+      <p style = "color: #FFCD03; margin:0px; font-size: 1rem">Est. 2025</p>
     </button>
 
     <div class="signup-container">
@@ -21,18 +21,39 @@
       <form id="signup-form">
         <input type="text" id="firstName" placeholder="First Name" required />
         <input type="text" id="lastName" placeholder="Last Name" required />
-        <input type="text" id="user" placeholder="Username" required /> <!--Changed this type to text because user doesnt need email to sign in and id to user for readability-->
-        <input type="password" id="password" placeholder="Password" required />
-        <input
-          type="password"
-          id="confirm-password"
-          placeholder="Confirm Password"
+        <input type="text" id="user" placeholder="Username" required  
+          minlength="5" maxlength="18"
+          pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d!@#$%^&*]{5,18}$"
+          title="Must be 5-18 characters and include at least one number and one letter."/> <!--Changed this type to text because user doesnt need email to sign in and id to user for readability-->
+        
+        <div style= "position:relative; display: inline-block"> <!--Added this div to wrap the password input and a toggle visibility icon im going to add so the icons abosolute position is relative to this div container wiht passowrd and not whole page-->
+          <input type="password" id="password" placeholder="Password"
           required
-        />
+          minlength="5" maxlength="18"
+          pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{5,32}$"
+          title= "Must be 5-32 characters and include at least one letter, one number, and one special character (!@#$%^&*)."/> <!--Changed this type to text because user doesnt need email to sign in and id to user for readability-->
+          <button style="position: absolute; border: none; background: none; padding: 0; cursor: pointer;"> <!--Making a button that wont show so i can put the image inside of it. That will act as the button-->
+            <img src="../public/images/show.png" alt="toggle visibility" id="togglePasswordButton" style="width: 20px; height: 20px; position: absolute; right: 14px; top: 12px;"/> <!--This is the image that will toggle the visibility of the password-->
+          </button>
+        </div>
+
+        <div style= "position:relative; display: inline-block">
+          <input
+            type="password"
+            id="confirm-password"
+            placeholder="Confirm Password"
+            required
+          />
+          <button style="position: absolute; border: none; background: none; padding: 0; cursor: pointer;">
+            <img src="../public/images/show.png" alt="toggle visibility" id="toggleConfirmPasswordButton" style="width: 20px; height: 20px; position: absolute; right: 14px; top: 12px;"/>
+          </button>
+        </div>
+
         <button id = "submitButton" type="submit">Sign Up</button> <!--Changed button to id submitButton so styles didnt interfere with other button above that brinngs us back to home page-->
       </form>
       <p>Already have an account? <a href="login.html">Login here</a></p>
     </div>
     <script src="../src/js/auth.js"></script>
+    <script src="../src/js/toggleVisibility.js"></script>
   </body>
 </html>

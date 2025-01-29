@@ -10,9 +10,9 @@
     
     <!--This button is the same little square we see in landing page that says Knight's Scroll and is just a way for the user to be redirected to landing page if they wish-->
     <button class = "iconContainer" onclick = "window.location.href = '../../index.html' ">
-        <p style="color: #FFCD03; margin: 0px">Knight's Scroll</p>
+        <p style="color: #FFCD03; margin: 0px; font-size: 1rem">Knight's Scroll</p>
         <img id = "scroll" src = "../public/images/scroll.png" alt = "scroll">
-        <p style = "color: #FFCD03; margin:0px">Est. 2025</p>
+        <p style = "color: #FFCD03; margin:0px; font-size: 1rem">Est. 2025</p>
     </button>
 
 
@@ -21,11 +21,20 @@
       <div id="error-message"></div>
       <form id="login-form">
         <input type = "text" id="user" placeholder="Username" required /> <!--Changed this type to text because user doesnt need email to sign in and id to user for readability-->
-        <input type="password" id="password" placeholder="Password" required />
+
+        <div style = "position: relative; display: inline-block"> <!--Added this div to also wrap password input field and toggle button so that button is in line with input and aboslute position is relative to this div-->
+          <input type="password" id="password" placeholder="Password" required />
+          <button style="position: absolute; border: none; background: none; padding: 0; cursor: pointer;">
+            <img src="../public/images/show.png" alt="toggle visibility" id="togglePasswordButton" style="width: 20px; height: 20px; position: absolute; right: 14px; top: 12px;"/>
+          </button>
+        </div>
+          
+
         <button id = "submitButton" type="submit">Login</button>
       </form>
       <p>Don't have an account? <a href="signup.html">Sign up here</a></p>
     </div>
     <script src="../src/js/auth.js"></script>
+    <script src = "../src/js/toggleVisibility.js"></script>
   </body>
 </html>

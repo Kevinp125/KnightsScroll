@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap');
 
+*{
+  font-family: 'MedievalSharp', cursive;
+}
+
 body {
     margin: 0;
     display: flex;
@@ -10,7 +14,6 @@ body {
     background-position: center;
     background-size: cover;
     background-attachment: fixed;
-    font-family: 'MedievalSharp', cursive;
    }
    
    .login-container, .signup-container {
@@ -22,6 +25,10 @@ body {
     width: 100%;
     max-width: 400px;
     border-radius: 5%;
+   }
+
+   .login-container input, .signup-container input { /*added this so inputs inside signup-container / login container are targeted to all be the same size. I added a toggle visibility button and a div for it that messed up the auto width so had to manually set it*/
+    width: 90%;
    }
    
    h1 {
