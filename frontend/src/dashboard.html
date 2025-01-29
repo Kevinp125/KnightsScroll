@@ -67,8 +67,12 @@
           </div>
           <form id="addContactForm">
             <div class="form-group">
-              <label for="contactName">Name</label>
-              <input type="text" id="contactName" required />
+              <label for="contactName">First Name</label>
+              <input type="text" id="firstName" required />
+            </div>
+            <div class="form-group">
+              <label for="contactEmail">Last Name</label>
+              <input type="text" id="lastName" required />
             </div>
             <div class="form-group">
               <label for="contactEmail">Email</label>
@@ -76,7 +80,7 @@
             </div>
             <div class="form-group">
               <label for="contactPhone">Phone Number</label>
-              <input type="tel" id="contactPhone" required />
+              <input type="tel" id="contactPhone" placeholder = "XXX-XXX-XXXX" pattern = "^\d{3}-\d{3}-\d{4}$" title="Enter a valid phone number in the format XXX-XXX-XXXX"/>
             </div>
             <div class="modal-buttons">
               <button type="button" class="cancel-btn">Cancel</button>
