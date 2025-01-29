@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
           localStorage.setItem(
             "user",
             JSON.stringify({
-              id: userData.id,
+              id: userData.userId,
               firstName: userData.firstName,
               lastName: userData.lastName,
               userName: data.userName,
@@ -85,7 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
           localStorage.setItem(
             "user",
             JSON.stringify({
-              id: userData.id,
+              id: userData.userId,
               firstName: data.firstName,
               lastName: data.lastName,
               userName: data.userName,
