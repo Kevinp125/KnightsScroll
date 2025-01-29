@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   // Get user data from localStorage
   const user = JSON.parse(localStorage.getItem("user"));
-  
+
   if (user) {
     document.getElementById("userName").textContent = user.firstName;
   } else {
