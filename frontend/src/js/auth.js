@@ -35,8 +35,6 @@ document.addEventListener("DOMContentLoaded", () => {
               userName: data.userName,
             })
           );
-
-          console.log("converted jsonResponse to local storage ", localStorage.getItem("user"));
           window.location.href = "/frontend/src/dashboard.html";
         } else {
           errorMessages.textContent = "Invalid username or password";
