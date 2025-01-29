@@ -43,7 +43,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const contactData = {
       userId: user.id,
-      name: document.getElementById("contactName").value,
+      firstName: document.getElementById("firstName").value,
+      lastName: document.getElementById("lastName").value,
       email: document.getElementById("contactEmail").value,
       phone: document.getElementById("contactPhone").value,
     };
@@ -56,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Read Contacts
   async function loadContacts() {
     try {
-      const response = await fetch("/backend/api/SearchContacts.php", {
+      const response = await fetch("/backend/api/SearchContact.php", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
