@@ -1,84 +1,76 @@
 <?php
-// Decode incoming JSON payload
+
 $inData = getRequestInfo();
 
-// Extract data from the request
-$contactId = $inData["contactId"];
-$firstName = $inData["firstName"];
-$lastName = $inData["lastName"];
-$pNumber = $inData["pNumber"];
-$email = $inData["email"];
+$searchResults = "";
+$searchCount = 0;
 
-// Database connection details
-$servername = "localhost";
-$username = "root2";
-$password = "password1234";
-$dbname = "COP4331";
+$conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
+if ($conn->connect_error) 
+{
+    returnWithError($conn->connect_error);
+} 
+else
+{
+    // Prepare the SQL query to search for partial matches in firstName, lastName, phone, or email
+    $stmt = $conn->prepare("SELECT ID, firstName, lastName, phone, email FROM Contacts WHERE (firstName LIKE ? OR lastName LIKE ? OR phone LIKE ? OR email LIKE ?) AND UserID = ?");
+    if (!$stmt) {
+        returnWithError("Failed to prepare statement: " . $conn->error);
+    }
 
-// Establish connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+    // Add wildcards for partial matching
+    $searchTerm = "%" . $inData["search"] . "%";
+    $userId = $inData["userId"];
+    $stmt->bind_param("sssss", $searchTerm, $searchTerm, $searchTerm, $searchTerm, $userId);
+    $stmt->execute();
 
-// Check connection
-if ($conn->connect_error) {
-    sendResponse(500, "Database connection failed: " . $conn->connect_error);
-    exit;
-}
+    $result = $stmt->get_result();
 
-// Check if the contact exists
-$checkStmt = $conn->prepare("SELECT ID FROM Contacts WHERE ID = ?");
-if (!$checkStmt) {
-    sendResponse(500, "Failed to prepare statement: " . $conn->error);
-    exit;
-}
+    // Build the JSON response with matching contacts
+    while ($row = $result->fetch_assoc())
+    {
+        if ($searchCount > 0)
+        {
+            $searchResults .= ",";
+        }
+        $searchCount++;
+        $searchResults .= '{"id":' . $row["ID"] . ',"firstName":"' . $row["firstName"] . '","lastName":"' . $row["lastName"] . '","phone":"' . $row["phone"] . '","email":"' . $row["email"] . '"}';
+    }
 
-$checkStmt->bind_param("s", $contactId);
-if (!$checkStmt->execute()) {
-    sendResponse(500, "Failed to execute statement: " . $checkStmt->error);
-    exit;
-}
+    if ($searchCount == 0)
+    {
+        returnWithError("No Records Found");
+    }
+    else
+    {
+        returnWithInfo($searchResults);
+    }
 
-$checkStmt->store_result();
-if ($checkStmt->num_rows === 0) {
-    $checkStmt->close();
+    $stmt->close();
     $conn->close();
-    sendResponse(400, "Contact ID does not exist: " . $contactId);
-    exit;
-}
-$checkStmt->close();
-
-// Update contact information
-$stmt = $conn->prepare("UPDATE Contacts SET FirstName = ?, LastName = ?, Phone = ?, Email = ? WHERE ID = ?");
-if (!$stmt) {
-    sendResponse(500, "Failed to prepare update statement: " . $conn->error);
-    exit;
 }
 
-$stmt->bind_param("sssss", $firstName, $lastName, $pNumber, $email, $contactId);
-if ($stmt->execute()) {
-    sendResponse(200, "Contact updated successfully");
-} else {
-    sendResponse(500, "Failed to update contact: " . $stmt->error);
-}
-
-// Clean up
-$stmt->close();
-$conn->close();
-
-/**
- * Decode JSON request body
- */
 function getRequestInfo()
 {
     return json_decode(file_get_contents('php://input'), true);
 }
 
-/**
- * Send JSON response with a specific HTTP status code
- */
-function sendResponse($status, $message)
+function sendResultInfoAsJson($obj)
 {
-    http_response_code($status);
-    header('Content-Type: application/json');
-    echo json_encode(["message" => $message]);
+    header('Content-type: application/json');
+    echo $obj;
 }
+
+function returnWithError($err)
+{
+    $retValue = '{"results":[],"error":"' . $err . '"}';
+    sendResultInfoAsJson($retValue);
+}
+
+function returnWithInfo($searchResults)
+{
+    $retValue = '{"results":[' . $searchResults . '],"error":""}';
+    sendResultInfoAsJson($retValue);
+}
+
 ?>
