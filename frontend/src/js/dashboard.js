@@ -42,11 +42,11 @@ document.addEventListener("DOMContentLoaded", () => {
     e.preventDefault();
 
     const contactData = {
-      userId: user.id,
       firstName: document.getElementById("firstName").value,
       lastName: document.getElementById("lastName").value,
+      pNumber: document.getElementById("contactPhone").value,
       email: document.getElementById("contactEmail").value,
-      phone: document.getElementById("contactPhone").value,
+      userId: user.id,
     };
 
     await createContact(contactData);
