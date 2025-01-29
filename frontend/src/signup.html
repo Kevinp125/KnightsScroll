@@ -23,8 +23,8 @@
         <input type="text" id="lastName" placeholder="Last Name" required />
         <input type="text" id="user" placeholder="Username" required  
           minlength="5" maxlength="18"
-          pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d!@#$%^&*]{5,18}$"
-          title="Must be 5-18 characters and include at least one number and one letter."/> <!--Changed this type to text because user doesnt need email to sign in and id to user for readability-->
+          pattern="^(?=.*[A-Za-z])[A-Za-z\d!@#$%^&*]{5,18}$"
+          title="Must be 5-18 characters and include at least one letter."/> <!--Changed this type to text because user doesnt need email to sign in and id to user for readability-->
         
         <div style= "position:relative; display: inline-block"> <!--Added this div to wrap the password input and a toggle visibility icon im going to add so the icons abosolute position is relative to this div container wiht passowrd and not whole page-->
           <input type="password" id="password" placeholder="Password"
