@@ -101,7 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Update Contact
-  async function updateContact(contactId, updatedData) {
+  async function updateContact(updatedData) {
     try {
       const response = await fetch("/backend/api/UpdateContact.php", {
         method: "POST",
@@ -109,7 +109,6 @@ document.addEventListener("DOMContentLoaded", () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          id: contactId,
           ...updatedData,
         }),
       });
@@ -181,6 +180,7 @@ document.addEventListener("DOMContentLoaded", () => {
       editBtn.addEventListener("click", () => {
 
         const editModal = document.getElementById("editContactModal"); //get the editContactPopup
+        const editContactForm = document.getElementById("editContactForm"); //get the edit contact form
         const closeBtn = editModal.querySelector(".close"); //get the close button
         const cancelBtn = editModal.querySelector(".cancel-btn"); //get the cancel button
 
@@ -200,15 +200,30 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("editLastName").value = contact.lastName; //set the value of the last name input to the last name of the contact so user can see what they are editing
         document.getElementById("editContactEmail").value = contact.email; //set the value of the email input to the email of the contact so user can see what they are editing
         document.getElementById("editContactPhone").value = contact.phone; //set the value of the phone input to the phone of the contact so user can see what they are editing
-
-
+        
+        //once user clicks submit we want to grab all edited contact info and pass it into our update contact function
+        editContactForm.addEventListener("submit", async (e) => {
+          e.preventDefault();
+      
+          const contactData = {
+            contactId: contact.id,
+            firstName: document.getElementById("editFirstName").value,
+            lastName: document.getElementById("editLastName").value,
+            pNumber: document.getElementById("editContactPhone").value,
+            email: document.getElementById("editContactEmail").value,
+          };
+      
+          await updateContact(contactData);
+          editContactForm.reset();
+          modal.style.display = "none";
+        });
       });
 
 
       deleteBtn.addEventListener("click", () => {deleteContact(contact.id)});
 
-
       contactsGrid.appendChild(contactCard);
+      
     });
   }
 
