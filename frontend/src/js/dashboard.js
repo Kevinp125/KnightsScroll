@@ -127,7 +127,7 @@ document.addEventListener("DOMContentLoaded", () => {
   async function deleteContact(contactId) {
     if (confirm("Are you sure you want to delete this contact?")) {
       try {
-        const response = await fetch("/backend/api/DeleteContact.php", {
+        const response = await fetch("/backend/api/RemoveContact.php", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
