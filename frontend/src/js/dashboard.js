@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Contact CRUD Operations
   let contacts = [];
-  
+
   let globalContactId = null;
 
   // Handle Add Contact Form Submission
@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   //handle edit contact form submission
-  document.getElementById("ediContactForm").addEventListener("submit", async (e) => {
+  document.getElementById("editContactForm").addEventListener("submit", async (e) => {
     e.preventDefault();
       
     const contactData = {
