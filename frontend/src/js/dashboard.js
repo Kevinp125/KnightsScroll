@@ -167,10 +167,20 @@ document.addEventListener("DOMContentLoaded", () => {
                     <p>${contact.phone}</p>
                 </div>
                 <div class="card-actions">
-                    <button class="edit-btn" onclick="editContact(${contact.id})">Edit</button>
-                    <button class="delete-btn" onclick="deleteContact(${contact.id})">Delete</button>
+                    <button class="edit-btn"> Edit </button> 
+                    <button class="delete-btn">Delete</button>
                 </div>
             `;
+      
+      const editBtn = contactCard.querySelector(".edit-btn"); //getting the edit button we just added to our contact card above throught its class name
+      const deleteBtn = contactCard.querySelector(".delete-btn"); //getting the delete button we just added to our contact card above throught its class name
+
+      //had to add event listeners to the buttons so that on click we can call the update and delete functions. Before the functions were being called on
+      //the buttons above inside the innerHTML. Like so onclick="updateContact(${contact.id})". However this doesnt work because innerHTML is static and  expects
+      //all eventhandlers to be globally available. These functions are inside DOMContentLoaded so they arent globally available.
+      editBtn.addEventListener("click", () => {updateContact(contact.id)});
+      deleteBtn.addEventListener("click", () => {deleteContact(contact.id)});
+
       contactsGrid.appendChild(contactCard);
     });
   }
@@ -208,6 +218,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Initial load of contacts
+  // Initial load of contacts runs as soon as the page loads
   loadContacts();
 });
