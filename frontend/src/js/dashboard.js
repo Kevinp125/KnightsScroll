@@ -215,7 +215,7 @@ document.addEventListener("DOMContentLoaded", () => {
       
           await updateContact(contactData);
           editContactForm.reset();
-          modal.style.display = "none";
+          editModal.style.display = "none";
         });
       });
 
