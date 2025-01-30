@@ -191,10 +191,13 @@ document.addEventListener("DOMContentLoaded", () => {
         cancelBtn.onclick = function () {editModal.style.display = "none";}; //if user clicks cancel button, modal will also close
 
         window.onclick = function (event) { //if user clicks outside of modal, modal will close this is because modal takes up entire screen anything inside it is a different property
-          if (event.target == modal) {
-            modal.style.display = "none";
+          if (event.target == editmModal) {
+            editModal.style.display = "none";
           }
         };
+
+        editContactForm.replaceWith(editContactForm.cloneNode(true)); 
+        editContactForm = document.getElementById("editContactForm"); // Get new form
 
         document.getElementById("editFirstName").value = contact.firstName; //set the value of the first name input to the first name of the contact so user can see what they are editing
         document.getElementById("editLastName").value = contact.lastName; //set the value of the last name input to the last name of the contact so user can see what they are editing
