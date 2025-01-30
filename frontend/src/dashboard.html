@@ -89,6 +89,37 @@
           </form>
         </div>
       </div>
+
+      <div id="editContactModal" class="modal">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2>Edit Contact</h2>
+            <span class="close">&times;</span>
+          </div>
+          <form id="editContactForm">
+            <div class="form-group">
+              <label for="contactName">First Name</label>
+              <input type="text" id="firstName" required />
+            </div>
+            <div class="form-group">
+              <label for="contactEmail">Last Name</label>
+              <input type="text" id="lastName" required />
+            </div>
+            <div class="form-group">
+              <label for="contactEmail">Email</label>
+              <input type="email" id="contactEmail" required />
+            </div>
+            <div class="form-group">
+              <label for="contactPhone">Phone Number</label>
+              <input type="tel" id="contactPhone" placeholder = "XXX-XXX-XXXX" pattern = "^\d{3}-\d{3}-\d{4}$" title="Enter a valid phone number in the format XXX-XXX-XXXX"/>
+            </div>
+            <div class="modal-buttons">
+              <button type="button" class="cancel-btn">Cancel</button>
+              <button type="submit" class="submit-btn">Save Edits</button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
 
     <script src="js/dashboard.js"></script>
