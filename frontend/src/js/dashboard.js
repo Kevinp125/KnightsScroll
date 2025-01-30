@@ -37,6 +37,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Contact CRUD Operations
   let contacts = [];
+  
+  let globalContactId = null;
 
   // Handle Add Contact Form Submission
   addContactForm.addEventListener("submit", async (e) => {
@@ -53,6 +55,23 @@ document.addEventListener("DOMContentLoaded", () => {
     await createContact(contactData);
     addContactForm.reset();
     modal.style.display = "none";
+  });
+
+  //handle edit contact form submission
+  document.getElementById("ediContactForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+      
+    const contactData = {
+      contactId: globalContactId,
+      firstName: document.getElementById("editFirstName").value,
+      lastName: document.getElementById("editLastName").value,
+      pNumber: document.getElementById("editContactPhone").value,
+      email: document.getElementById("editContactEmail").value,
+    };
+      
+      await updateContact(contactData);
+      editContactForm.reset();
+      editModal.style.display = "none";
   });
 
   // Read Contacts
@@ -156,8 +175,6 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    let globalContactId = null;
-
     contacts.forEach((contact) => {
       const contactCard = document.createElement("div");
       contactCard.className = "contact-card";
@@ -205,27 +222,8 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       deleteBtn.addEventListener("click", () => {deleteContact(contact.id)});
-
       contactsGrid.appendChild(contactCard);
       
-    });
-
-    const editContactForm = document.getElementById("editContactForm"); //get the edit contact form
-    //once user clicks submit we want to grab all edited contact info and pass it into our update contact function
-    ediContactForm.addEventListener("submit", async (e) => {
-      e.preventDefault();
-        
-      const contactData = {
-        contactId: globalContactId,
-        firstName: document.getElementById("editFirstName").value,
-        lastName: document.getElementById("editLastName").value,
-        pNumber: document.getElementById("editContactPhone").value,
-        email: document.getElementById("editContactEmail").value,
-      };
-        
-        await updateContact(contactData);
-        editContactForm.reset();
-        editModal.style.display = "none";
     });
   }
 
