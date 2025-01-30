@@ -186,9 +186,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         editModal.style.display = "block"; //change it to block so modal shows up since user did click edit button
 
-        closeBtn.onclick = function () {editModal.style.display = "none"}; //if user clicks close button, modal will close
-        
-        cancelBtn.onclick = function () {editModal.style.display = "none"}; //if user clicks cancel button, modal will also close
+        closeBtn.onclick = function () {editModal.style.display = "none";}; //if user clicks close button, modal will close
+
+        cancelBtn.onclick = function () {editModal.style.display = "none";}; //if user clicks cancel button, modal will also close
 
         window.onclick = function (event) { //if user clicks outside of modal, modal will close this is because modal takes up entire screen anything inside it is a different property
           if (event.target == modal) {
