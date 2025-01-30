@@ -162,7 +162,7 @@ document.addEventListener("DOMContentLoaded", () => {
       contactCard.className = "contact-card";
       contactCard.innerHTML = `
                 <div class="contact-info">
-                    <h3>${contact.name}</h3>
+                    <h3>${contact.firstName} ${contact.lastName}</h3>
                     <p>${contact.email}</p>
                     <p>${contact.phone}</p>
                 </div>
