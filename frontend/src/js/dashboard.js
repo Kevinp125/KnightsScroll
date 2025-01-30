@@ -181,8 +181,8 @@ document.addEventListener("DOMContentLoaded", () => {
       editBtn.addEventListener("click", () => {
 
         const editModal = document.getElementById("editContactModal"); //get the editContactPopup
-        const closeBtn = document.querySelector(".close"); //get the close button
-        const cancelBtn = document.querySelector(".cancel-btn"); //get the cancel button
+        const closeBtn = editModal.querySelector(".close"); //get the close button
+        const cancelBtn = editModal.querySelector(".cancel-btn"); //get the cancel button
 
         editModal.style.display = "block"; //change it to block so modal shows up since user did click edit button
 
@@ -198,6 +198,8 @@ document.addEventListener("DOMContentLoaded", () => {
     
 
       });
+
+
       deleteBtn.addEventListener("click", () => {deleteContact(contact.id)});
 
 
