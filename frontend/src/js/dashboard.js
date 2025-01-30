@@ -198,8 +198,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         editModal.getElementById("firstName").value = contact.firstName; //set the value of the first name input to the first name of the contact so user can see what they are editing
         editModal.getElementById("lastName").value = contact.lastName; //set the value of the last name input to the last name of the contact so user can see what they are editing
-        editModal.getElementByID("contactEmail").value = contact.email; //set the value of the email input to the email of the contact so user can see what they are editing
-        editModal.getElementByID("contactPhone").value = contact.phone; //set the value of the phone input to the phone of the contact so user can see what they are editing
+        editModal.getElementById("contactEmail").value = contact.email; //set the value of the email input to the email of the contact so user can see what they are editing
+        editModal.getElementById("contactPhone").value = contact.phone; //set the value of the phone input to the phone of the contact so user can see what they are editing
 
 
       });
