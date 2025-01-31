@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const closeBtn = document.querySelector(".close");
   const cancelBtn = document.querySelector(".cancel-btn");
   const addContactForm = document.getElementById("addContactForm");
+  const editContactForm = document.getElementById("editContactForm");
 
   // Modal Controls
   addBtn.onclick = function () {
@@ -57,8 +58,8 @@ document.addEventListener("DOMContentLoaded", () => {
     modal.style.display = "none";
   });
 
-  //handle edit contact form submission
-  document.getElementById("editContactForm").addEventListener("submit", async (e) => {
+  //Handle Edit contact form submission
+  editContactForm.addEventListener("submit", async (e) => {
     e.preventDefault();
       
     const contactData = {
@@ -71,7 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
       
       await updateContact(contactData);
       editContactForm.reset();
-      editModal.style.display = "none";
+      document.getElementById("editContactModal").style.display = "none";
   });
 
   // Read Contacts
