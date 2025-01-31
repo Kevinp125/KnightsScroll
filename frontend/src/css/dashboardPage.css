@@ -14,6 +14,32 @@ body {
     color: #2d190f;
 }
 
+/*No Contacts Div Style*/
+
+.noContactContainer{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+    align-items: center;
+    top: 56%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.noContactContainer img{
+    height: 300px;
+    width: 350px;
+}
+
+.noContactContainer h1{
+    font-size: 2rem;
+    font-family: 'MedievalSharp', cursive;
+    color: whitesmoke;
+}
+
+
 /* Navbar Styles */
 .navbar {
     position: relative;

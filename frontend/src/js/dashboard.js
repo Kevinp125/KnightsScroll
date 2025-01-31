@@ -257,6 +257,11 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!data.error) {
         displayContacts(data.results || []);
       }
+      else{
+        
+
+
+      }
     } catch (error) {
       console.error("Error searching contacts:", error);
     }
