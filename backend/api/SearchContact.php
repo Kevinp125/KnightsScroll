@@ -13,7 +13,7 @@ if ($conn->connect_error)
 else
 {
     // Prepare the SQL query to search for partial matches in firstName, lastName, phone, or email
-    $stmt = $conn->prepare("SELECT ID, firstName, lastName, phone, email FROM Contacts WHERE (firstName LIKE ? OR lastName LIKE ? OR phone LIKE ? OR email LIKE ?) AND UserID = ?");
+    $stmt = $conn->prepare("SELECT ID, firstName, lastName FROM Contacts WHERE (firstName LIKE ? OR lastName LIKE ?) AND UserID = ?");
     if (!$stmt) {
         returnWithError("Failed to prepare statement: " . $conn->error);
     }
@@ -21,7 +21,7 @@ else
     // Add wildcards for partial matching
     $searchTerm = "%" . $inData["search"] . "%";
     $userId = $inData["userId"];
-    $stmt->bind_param("sssss", $searchTerm, $searchTerm, $searchTerm, $searchTerm, $userId);
+    $stmt->bind_param("ssi", $searchTerm, $searchTerm, $userId);
     $stmt->execute();
 
     $result = $stmt->get_result();
