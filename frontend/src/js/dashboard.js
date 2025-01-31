@@ -242,7 +242,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   async function searchContacts(searchTerm) {
     try {
-      const response = await fetch("/backend/api/SearchContacts.php", {
+      const response = await fetch("/backend/api/SearchContact.php", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
