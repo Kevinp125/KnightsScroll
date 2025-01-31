@@ -39,6 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Contact CRUD Operations
   let contacts = [];
 
+  //this variable allows us to store the id of the contact we are editing so we can pass it to update function after edit form submission
   let globalContactId = null;
 
   // Handle Add Contact Form Submission
@@ -210,7 +211,7 @@ document.addEventListener("DOMContentLoaded", () => {
         cancelBtn.onclick = function () {editModal.style.display = "none";}; //if user clicks cancel button, modal will also close
 
         window.onclick = function (event) { //if user clicks outside of modal, modal will close this is because modal takes up entire screen anything inside it is a different property
-          if (event.target == editmModal) {
+          if (event.target == editModal) {
             editModal.style.display = "none";
           }
         };
