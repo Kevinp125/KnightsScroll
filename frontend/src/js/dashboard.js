@@ -230,7 +230,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Search Functionality
-  const searchInput = document.querySelector(".search-bar input");
+  const searchInput = document.getElementById("searchInput");
   let searchTimeout;
 
   searchInput.addEventListener("input", (e) => {
