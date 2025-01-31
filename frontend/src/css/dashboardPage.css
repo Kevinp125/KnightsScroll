@@ -19,6 +19,7 @@ body {
 .noContactContainer{
     position: absolute;
     display: flex;
+    display: none;
     flex-direction: column;
     justify-content: center;
     gap: 1rem;

@@ -170,10 +170,11 @@ document.addEventListener("DOMContentLoaded", () => {
   // Display Contacts
   function displayContacts(contacts) {
     const contactsGrid = document.querySelector(".contacts-grid");
+    const noContacts = document.querySelector(".noContactContainer");
     contactsGrid.innerHTML = ""; // Clear existing contacts
 
     if (contacts.length === 0) {
-      contactsGrid.innerHTML = '<p class="no-contacts">No contacts found</p>';
+      noContacts.style.display = "block";
       return;
     }
 
@@ -258,7 +259,7 @@ document.addEventListener("DOMContentLoaded", () => {
         displayContacts(data.results || []);
       }
       else{
-        
+
 
 
       }
