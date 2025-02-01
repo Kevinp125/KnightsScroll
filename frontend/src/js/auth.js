@@ -8,8 +8,10 @@ document.addEventListener("DOMContentLoaded", () => {
       e.preventDefault(); // Prevent the default form submission (page reload)
       const data = {
         userName: document.getElementById("user").value, //change the id for this to user since the input isnt email just fixing it
-        password: document.getElementById("password").value,
+        password: md5(document.getElementById("password").value),
       };
+
+      console.log(password);
 
       try {
         const res = await fetch("../../backend/api/Login.php", {
