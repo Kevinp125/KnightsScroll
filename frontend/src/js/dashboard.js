@@ -177,6 +177,9 @@ document.addEventListener("DOMContentLoaded", () => {
       noContacts.style.visibility = "visible";
       return;
     }
+    
+
+    noContacts.style.visibility = "hidden";
 
     contacts.forEach((contact) => {
       const contactCard = document.createElement("div");
@@ -242,6 +245,9 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   async function searchContacts(searchTerm) {
+
+    const noContact = document.querySelector(".noContactContainer");
+
     try {
       const response = await fetch("/backend/api/SearchContact.php", {
         method: "POST",
@@ -255,13 +261,12 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       const data = await response.json();
-      if (!data.error) {
+      if (!data.error && data.results.length > 0) {
         displayContacts(data.results || []);
       }
-      else{
-
-
-
+      else {
+        noContact.style.visibility = "visible";
+        
       }
     } catch (error) {
       console.error("Error searching contacts:", error);
