@@ -210,28 +210,35 @@ document.addEventListener("DOMContentLoaded", () => {
     const prevBtn = document.querySelector(".prev-btn");
     const nextBtn = document.querySelector(".next-btn");
     const currentPageSpan = document.getElementById("currentPage");
+    const pagination = document.querySelector(".pagination");
     
     contactsGrid.innerHTML = ""; // Clear existing contacts
 
     if (!contactsArray || contactsArray.length === 0) {
       noContacts.style.visibility = "visible";
       contactsGrid.style.display = "none";
-      document.querySelector(".pagination").style.display = "none";
+      pagination.style.display = "none";
       return;
     }
     
     contacts = contactsArray; 
 
-    noContacts.style.visibility = "hidden";
-    contactsGrid.style.display = "grid";
-    document.querySelector(".pagination").style.display = "flex";
-
     // Calculate pagination
     const totalPages = Math.ceil(contacts.length / MAX_CONTACTS_PER_PAGE);
+    
+    // If there's only one page or less of results, hide pagination
+    if (totalPages <= 1) {
+      pagination.style.display = "none";
+    } else {
+      pagination.style.display = "flex";
+    }
+
     const start = (currentPage - 1) * MAX_CONTACTS_PER_PAGE;
     const end = start + MAX_CONTACTS_PER_PAGE;
     const paginatedContacts = contacts.slice(start, end);
 
+    noContacts.style.visibility = "hidden";
+    contactsGrid.style.display = "grid";
 
     // Update pagination controls
     if (prevBtn && nextBtn && currentPageSpan) {
@@ -313,6 +320,7 @@ document.addEventListener("DOMContentLoaded", () => {
     currentPage = 1; 
     const noContact = document.querySelector(".noContactContainer");
     const contactsGrid = document.querySelector(".contacts-grid");
+    const pagination = document.querySelector(".pagination");
   
     try {
       console.log("Searching for: ", searchTerm);
@@ -328,17 +336,24 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   
       const data = await response.json();
+      contacts = data.results || []; 
       
-      if (!data.error) {
-        contacts = data.results || []; // Update global contacts array
-        displayContacts(contacts);
-      } else {
+      if (contacts.length === 0) {
+        // No results found
         noContact.style.visibility = "visible";
         contactsGrid.style.display = "none";
-        console.error("Error from API:", data.error);
+        pagination.style.display = "none"; 
+      } else {
+        // Results found
+        noContact.style.visibility = "hidden";
+        contactsGrid.style.display = "grid";
+        displayContacts(contacts);
       }
     } catch (error) {
       console.error("Error searching contacts:", error);
+      noContact.style.visibility = "visible";
+      contactsGrid.style.display = "none";
+      pagination.style.display = "none";
     }
   }
 
