@@ -19,14 +19,15 @@ body {
 .noContactContainer{
     position: absolute;
     display: flex;
-    display: none;
     flex-direction: column;
     justify-content: center;
-    gap: 1rem;
     align-items: center;
+    gap: 1rem;
     top: 56%;
     left: 50%;
     transform: translate(-50%, -50%);
+    visibility: hidden;
+    pointer-events: none;
 }
 
 .noContactContainer img{

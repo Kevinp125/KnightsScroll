@@ -174,7 +174,7 @@ document.addEventListener("DOMContentLoaded", () => {
     contactsGrid.innerHTML = ""; // Clear existing contacts
 
     if (contacts.length === 0) {
-      noContacts.style.display = "block";
+      noContacts.style.visbility = "visible";
       return;
     }
 
