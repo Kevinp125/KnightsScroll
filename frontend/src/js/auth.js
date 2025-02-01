@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
         password: md5(document.getElementById("password").value),
       };
 
-      console.log(password);
+      console.log(data.password);
 
       try {
         const res = await fetch("../../backend/api/Login.php", {
