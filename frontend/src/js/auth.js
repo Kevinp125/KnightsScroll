@@ -53,13 +53,14 @@ document.addEventListener("DOMContentLoaded", () => {
       e.preventDefault();
 
       const password = document.getElementById("password").value;
-      password = md5(password); //md5 hashes the password before sending it to the backend
       const confirmPassword = document.getElementById("confirm-password").value;
 
       if (password !== confirmPassword) {
         errorMessages.textContent = "Passwords do not match";
         return;
       }
+
+      password = md5(password); //md5 hashes the password before sending it to the backend
 
       const data = {
         // Data we are sending to backend to DB
