@@ -49,7 +49,7 @@ body {
 }
 
 .buttonContainer{
-  width: 175px;
+  width: 220px;
   height: 75px;
   border: 0;
   border: 2px solid black;
@@ -57,7 +57,7 @@ body {
   cursor: pointer;
   background-color: #2d190f;
   color: #FFCD03;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
 }
 
 h1{

@@ -10,9 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
         userName: document.getElementById("user").value, //change the id for this to user since the input isnt email just fixing it
         password: md5(document.getElementById("password").value), //md5 hashes the password beacuse the passwords stored in the database are hashed
       };
-
-      console.log(data.password);
-
+      
       try {
         const res = await fetch("../../backend/api/Login.php", {
           method: "POST",
