@@ -4,6 +4,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (user) {
     document.getElementById("userName").textContent = user.firstName;
+    
+    // Immediately perform an empty search instead of loadContacts()
+    searchContacts(""); // This will act as our initial load
   } else {
     // window.location.href = "login.html"; // Redirect if not logged in
     console.log("User not logged in");
@@ -78,25 +81,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Read Contacts
   async function loadContacts() {
-    try {
-      const response = await fetch("http://school.owengarces.com/backend/api/SearchContact.php", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          userId: user.id,
-          search: "",
-        }),
-      });
+  try {
+    const response = await fetch("http://school.owengarces.com/backend/api/SearchContact.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        userId: user.id,
+        search: "",
+      }),
+    });
 
-      const data = await response.json();
-      contacts = data.results || [];
-      displayContacts(contacts);
-    } catch (error) {
-      console.error("Error loading contacts:", error);
-    }
-  }
+    const data = await response.json();
+    contacts = data.results || [];
+
+    console.log("Load Contacts Response:", data);
+    
+    // Always call displayContacts, even if array is empty
+    displayContacts(contacts);
+  } catch (error) {
+    console.error("Error loading contacts:", error);
+    // Handle error case - at least clear the grid
+    displayContacts([]);
+  }}
 
   // Create Contact
   async function createContact(contactData) {
@@ -145,7 +153,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Delete Contact
   async function deleteContact(contactId) {
-    if (confirm("Are you sure you want to delete this contact?")) {
+    const deleteModal = document.getElementById("deleteConfirmModal");
+    const closeBtn = deleteModal.querySelector(".close");
+    const cancelBtn = deleteModal.querySelector(".cancel-btn");
+    const confirmBtn = deleteModal.querySelector(".confirm-delete-btn");
+  
+    deleteModal.style.display = "block";
+  
+    const closeModal = () => {
+      deleteModal.style.display = "none";
+    };
+  
+    // Close modal handlers
+    closeBtn.onclick = closeModal;
+    cancelBtn.onclick = closeModal;
+    window.onclick = (event) => {
+      if (event.target == deleteModal) {
+        closeModal();
+      }
+    };
+  
+    // Delete confirmation handler
+    confirmBtn.onclick = async () => {
       try {
         const response = await fetch("http://school.owengarces.com/backend/api/RemoveContact.php", {
           method: "POST",
@@ -156,15 +185,16 @@ document.addEventListener("DOMContentLoaded", () => {
             contactId: contactId,
           }),
         });
-
+  
         const data = await response.json();
         if (!data.error) {
           loadContacts(); // Refresh the contact list
+          closeModal();
         }
       } catch (error) {
         console.error("Error deleting contact:", error);
       }
-    }
+    };
   }
 
   // Display Contacts
@@ -173,11 +203,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const noContacts = document.querySelector(".noContactContainer");
     contactsGrid.innerHTML = ""; // Clear existing contacts
 
-    if (contacts.length === 0) {
+      // Always ensure both elements exist before proceeding
+    if (!contactsGrid || !noContacts) return;
+
+    if (!contacts || contacts.length === 0) {
       noContacts.style.visibility = "visible";
+      contactsGrid.style.display = "none";
       return;
     }
-    
 
     noContacts.style.visibility = "hidden";
     contactsGrid.style.display = "grid";
@@ -187,7 +220,7 @@ document.addEventListener("DOMContentLoaded", () => {
       contactCard.className = "contact-card";
       contactCard.innerHTML = `
                 <div class="contact-info">
-                    <h1>${contact.firstName} ${contact.lastName}</h1>
+                    <h3>${contact.firstName} ${contact.lastName}</h3>
                     <p>${contact.email}</p>
                     <p>${contact.phone}</p>
                 </div>
@@ -235,22 +268,28 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Search Functionality
-  const searchInput = document.querySelector(".search-bar input");
-  let searchTimeout;
-
-  searchInput.addEventListener("input", (e) => {
-    clearTimeout(searchTimeout);
-    searchTimeout = setTimeout(() => {
-      searchContacts(e.target.value);
-    }, 300);
+  const searchInput = document.querySelector("#searchInput");
+  const searchBtn = document.querySelector(".search-icon-btn");
+  
+  // Add click event for search button
+  searchBtn.addEventListener("click", () => {
+    searchContacts(searchInput.value);
   });
-
+  
+  // Add enter key support
+  searchInput.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      searchContacts(searchInput.value);
+    }
+  });
+  
   async function searchContacts(searchTerm) {
-
     const noContact = document.querySelector(".noContactContainer");
     const contactsGrid = document.querySelector(".contacts-grid");
-
+  
     try {
+      console.log("Searching for: ", searchTerm);
       const response = await fetch("http://school.owengarces.com/backend/api/SearchContact.php", {
         method: "POST",
         headers: {
@@ -261,20 +300,18 @@ document.addEventListener("DOMContentLoaded", () => {
           search: searchTerm,
         }),
       });
-
+  
       const data = await response.json();
-      if (!data.error && data.results.length > 0) {
+      
+      if (!data.error) {
         displayContacts(data.results || []);
-      }
-      else {
+      } else {
         noContact.style.visibility = "visible";
         contactsGrid.style.display = "none";
+        console.error("Error from API:", data.error);
       }
     } catch (error) {
       console.error("Error searching contacts:", error);
     }
   }
-
-  // Initial load of contacts runs as soon as the page loads
-  loadContacts();
 });
