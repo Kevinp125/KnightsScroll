@@ -15,5 +15,9 @@ function toggleVisbility(passwordFieldId, imgIconId){ //make a function for resu
   }
 }
 
+
 document.getElementById("togglePasswordButton").addEventListener("click", () => {toggleVisbility("password", "togglePasswordButton")}); //add event listener to the button to toggle the visibility of the password field when clicked call function with ids
-document.getElementById("toggleConfirmPasswordButton").addEventListener("click", () => {toggleVisbility("confirm-password", "toggleConfirmPasswordButton")}); //same thing here but for button next to confirm password
+
+if(document.getElementById("signup-form")){
+  document.getElementById("toggleConfirmPasswordButton").addEventListener("click", () => {toggleVisbility("confirm-password", "toggleConfirmPasswordButton")}); //same thing here but for button next to confirm password
+}
