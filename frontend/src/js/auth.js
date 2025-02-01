@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
       e.preventDefault(); // Prevent the default form submission (page reload)
       const data = {
         userName: document.getElementById("user").value, //change the id for this to user since the input isnt email just fixing it
-        password: md5(document.getElementById("password").value),
+        password: md5(document.getElementById("password").value), //md5 hashes the password beacuse the passwords stored in the database are hashed
       };
 
       console.log(data.password);
@@ -53,6 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
       e.preventDefault();
 
       const password = document.getElementById("password").value;
+      password = md5(password); //md5 hashes the password before sending it to the backend
       const confirmPassword = document.getElementById("confirm-password").value;
 
       if (password !== confirmPassword) {
