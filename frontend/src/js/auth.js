@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
     signupForm.addEventListener("submit", async (e) => {
       e.preventDefault();
 
-      const password = document.getElementById("password").value;
+      let password = document.getElementById("password").value;
       const confirmPassword = document.getElementById("confirm-password").value;
 
       if (password !== confirmPassword) {
