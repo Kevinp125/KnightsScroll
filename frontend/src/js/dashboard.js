@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Read Contacts
   async function loadContacts() {
     try {
-      const response = await fetch("/backend/api/SearchContact.php", {
+      const response = await fetch("http://school.owengarces.com/backend/api/SearchContact.php", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -101,7 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Create Contact
   async function createContact(contactData) {
     try {
-      const response = await fetch("/backend/api/AddContact.php", {
+      const response = await fetch("http://school.owengarces.com/backend/api/AddContact.php", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -124,7 +124,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Update Contact
   async function updateContact(updatedData) {
     try {
-      const response = await fetch("/backend/api/UpdateContact.php", {
+      const response = await fetch("http://school.owengarces.com/backend/api/UpdateContact.php", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -147,7 +147,7 @@ document.addEventListener("DOMContentLoaded", () => {
   async function deleteContact(contactId) {
     if (confirm("Are you sure you want to delete this contact?")) {
       try {
-        const response = await fetch("/backend/api/RemoveContact.php", {
+        const response = await fetch("http://school.owengarces.com/backend/api/RemoveContact.php", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -251,7 +251,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const contactsGrid = document.querySelector(".contacts-grid");
 
     try {
-      const response = await fetch("/backend/api/SearchContact.php", {
+      const response = await fetch("http://school.owengarces.com/backend/api/SearchContact.php", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

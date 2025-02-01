@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
       };
       
       try {
-        const res = await fetch("../../backend/api/Login.php", {
+        const res = await fetch("http://school.owengarces.com/backend/api/Login.php", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       console.log("Sending data..");
       try {
-        const res = await fetch("../../backend/api/SignUp.php", {
+        const res = await fetch("http://school.owengarces.com/backend/api/SignUp.php", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
