@@ -1,3 +1,5 @@
+import {md5} from "./md5.js"; //import the md5 function from the md5.js file
+
 document.addEventListener("DOMContentLoaded", () => {
   const loginForm = document.getElementById("login-form");
   const signupForm = document.getElementById("signup-form");

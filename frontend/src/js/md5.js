@@ -20,6 +20,7 @@
 /* global define */
 
 /* eslint-disable strict */
+export {md5};
 
 ;(function($) {
   'use strict'
