@@ -180,6 +180,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
 
     noContacts.style.visibility = "hidden";
+    contactsGrid.style.display = "grid";
 
     contacts.forEach((contact) => {
       const contactCard = document.createElement("div");
@@ -247,6 +248,7 @@ document.addEventListener("DOMContentLoaded", () => {
   async function searchContacts(searchTerm) {
 
     const noContact = document.querySelector(".noContactContainer");
+    const contactsGrid = document.querySelector(".contacts-grid");
 
     try {
       const response = await fetch("/backend/api/SearchContact.php", {
@@ -266,7 +268,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       else {
         noContact.style.visibility = "visible";
-        
+        contactsGrid.style.display = "none";
       }
     } catch (error) {
       console.error("Error searching contacts:", error);
