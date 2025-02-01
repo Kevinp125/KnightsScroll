@@ -10,13 +10,7 @@
       rel="stylesheet"
     />
   </head>
-  <body>
-
-    <!--No contacts found pop up-->
-    <div class = "noContactContainer">
-        <img src="../public/images/noContacts.png" alt="noContacts" />
-        <h1>No contacts found</h1>
-    </div>
+  
 
 
     <!-- Navigation Bar -->
@@ -66,6 +60,18 @@
 
       <div class="contacts-grid" id="contactsGrid">
         <!-- Contact cards will be dynamically inserted here -->
+      </div>
+
+      <!--No contacts found pop up-->
+      <div class = "noContactContainer">
+        
+        <h1>No contacts found</h1>
+    </div>
+
+      <div class="pagination">
+        <button class="prev-btn" disabled>Previous</button>
+        <span class="page-info">Page <span id="currentPage">1</span></span>
+        <button class="next-btn">Next</button>
       </div>
 
       <!-- Add Contact Modal -->
@@ -150,5 +156,4 @@
   </div>
 
     <script src="js/dashboard.js"></script>
-  </body>
 </html>

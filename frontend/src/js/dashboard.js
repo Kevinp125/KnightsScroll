@@ -1,4 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
+
+  let currentPage = 1;  
+  const MAX_CONTACTS_PER_PAGE = 6;
+
+    // Contact CRUD Operations
+  let contacts = [];
+
   // Get user data from localStorage
   const user = JSON.parse(localStorage.getItem("user"));
 
@@ -39,8 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  // Contact CRUD Operations
-  let contacts = [];
+
 
   //this variable allows us to store the id of the contact we are editing so we can pass it to update function after edit form submission
   let globalContactId = null;
@@ -198,37 +204,56 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Display Contacts
-  function displayContacts(contacts) {
+  function displayContacts(contactsArray) {
     const contactsGrid = document.querySelector(".contacts-grid");
     const noContacts = document.querySelector(".noContactContainer");
+    const prevBtn = document.querySelector(".prev-btn");
+    const nextBtn = document.querySelector(".next-btn");
+    const currentPageSpan = document.getElementById("currentPage");
+    
     contactsGrid.innerHTML = ""; // Clear existing contacts
 
-      // Always ensure both elements exist before proceeding
-    if (!contactsGrid || !noContacts) return;
-
-    if (!contacts || contacts.length === 0) {
+    if (!contactsArray || contactsArray.length === 0) {
       noContacts.style.visibility = "visible";
       contactsGrid.style.display = "none";
+      document.querySelector(".pagination").style.display = "none";
       return;
     }
+    
+    contacts = contactsArray; 
 
     noContacts.style.visibility = "hidden";
     contactsGrid.style.display = "grid";
+    document.querySelector(".pagination").style.display = "flex";
 
-    contacts.forEach((contact) => {
+    // Calculate pagination
+    const totalPages = Math.ceil(contacts.length / MAX_CONTACTS_PER_PAGE);
+    const start = (currentPage - 1) * MAX_CONTACTS_PER_PAGE;
+    const end = start + MAX_CONTACTS_PER_PAGE;
+    const paginatedContacts = contacts.slice(start, end);
+
+
+    // Update pagination controls
+    if (prevBtn && nextBtn && currentPageSpan) {
+      prevBtn.disabled = currentPage === 1;
+      nextBtn.disabled = currentPage === totalPages;
+      currentPageSpan.textContent = currentPage;
+    }
+
+    paginatedContacts.forEach((contact) => {
       const contactCard = document.createElement("div");
       contactCard.className = "contact-card";
       contactCard.innerHTML = `
-                <div class="contact-info">
-                    <h3>${contact.firstName} ${contact.lastName}</h3>
-                    <p>${contact.email}</p>
-                    <p>${contact.phone}</p>
-                </div>
-                <div class="card-actions">
-                    <button class="edit-btn"> Edit </button> 
-                    <button class="delete-btn">Delete</button>
-                </div>
-            `;
+        <div class="contact-info">
+          <h3>${contact.firstName} ${contact.lastName}</h3>
+          <p>${contact.email}</p>
+          <p>${contact.phone}</p>
+        </div>
+        <div class="card-actions">
+          <button class="edit-btn">Edit</button> 
+          <button class="delete-btn">Delete</button>
+        </div>
+      `;
       
       const editBtn = contactCard.querySelector(".edit-btn"); //getting the edit button we just added to our contact card above throught its class name
       const deleteBtn = contactCard.querySelector(".delete-btn"); //getting the delete button we just added to our contact card above throught its class name
@@ -285,6 +310,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   
   async function searchContacts(searchTerm) {
+    currentPage = 1; 
     const noContact = document.querySelector(".noContactContainer");
     const contactsGrid = document.querySelector(".contacts-grid");
   
@@ -304,7 +330,8 @@ document.addEventListener("DOMContentLoaded", () => {
       const data = await response.json();
       
       if (!data.error) {
-        displayContacts(data.results || []);
+        contacts = data.results || []; // Update global contacts array
+        displayContacts(contacts);
       } else {
         noContact.style.visibility = "visible";
         contactsGrid.style.display = "none";
@@ -314,4 +341,20 @@ document.addEventListener("DOMContentLoaded", () => {
       console.error("Error searching contacts:", error);
     }
   }
+
+  // Pagination controls
+  document.querySelector(".prev-btn").addEventListener("click", () => {
+    if (currentPage > 1) {
+      currentPage--;
+      displayContacts(contacts); 
+    }
+  });
+
+  document.querySelector(".next-btn").addEventListener("click", () => {
+    const totalPages = Math.ceil(contacts.length / MAX_CONTACTS_PER_PAGE);
+    if (currentPage < totalPages) {
+      currentPage++;
+      displayContacts(contacts); 
+    }
+  });
 });
