@@ -20,7 +20,6 @@
 /* global define */
 
 /* eslint-disable strict */
-export {md5};
 
 ;(function($) {
   'use strict'
@@ -378,7 +377,7 @@ export {md5};
    * @param {boolean} [raw] Raw output switch
    * @returns {string} MD5 output
    */
-  function md5(string, key, raw) {
+  window.md5 = function(string, key, raw) {
     if (!key) {
       if (!raw) {
         return hexMD5(string)
